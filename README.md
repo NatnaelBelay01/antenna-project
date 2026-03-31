@@ -38,8 +38,8 @@ Where:
 ## 📂 Project Structure
 
 .
-├── 2d_plot.py
-├── 3d_plot.py
+├── 2d-plot-v2.py
+├── 3d_plot_v2.py
 ├── requirements.txt
 └── README.md
 
@@ -47,17 +47,16 @@ Where:
 
 ## 📊 Implementations
 
-### 1. 2D Radiation Pattern (2d_plot.py)
+### 1. 2D Radiation Pattern (2d-plot-v2.py)
 
 - Generates polar plots of F(θ)
 - Includes:
   - Linear scale
-  - Decibel (dB) scale using:
-    20 log10(F(θ))
+  - Decibel (dB) scale using: 20 log10(F(θ))
 
 ---
 
-### 2. 3D Radiation Pattern (3d_plot.py)
+### 2. 3D Radiation Pattern (3d_plot_v2.py)
 
 Assumptions:
 - Rotational symmetry about the z-axis
@@ -80,10 +79,8 @@ Where:
 - Maximum radiation occurs at θ ≈ 90° (broadside direction)
 
 ### Nulls
-- Occur when:
-  sin(2π cosθ) = 0  
-- Which gives:
-  cosθ = n / 2
+- Occur when: sin(2π cosθ) = 0  
+- Which gives: cosθ = n / 2
 
 ### Side Lobes
 - Present due to interference between array elements
@@ -124,51 +121,56 @@ Where:
 
 1. Install Python:
    https://www.python.org/downloads/  
-   (Make sure to check "Add Python to PATH")
+   (Make sure to check "Add Python to PATH" during installation)
 
-2. Install dependencies:
-   pip install -r requirements.txt
+2. Create and activate a virtual environment:
+       python -m venv venv
+       venv\Scripts\activate
 
-3. Run 2D plot:
-   python 2d_plot.py
+3. Install dependencies:
+       pip install -r requirements.txt
 
-4. Run 3D plot:
-   python 3d_plot.py
+4. Run 2D plot:
+       python 2d-plot-v2.py
+
+5. Run 3D plot:
+       python 3d_plot_v2.py
 
 ---
 
 ### Linux (Fedora / Ubuntu / etc.)
 
-1. Install Python & pip:
+1. Install Python, pip, and venv prerequisites:
 
    Fedora:
-   sudo dnf install python3 python3-pip
+       sudo dnf install python3 python3-pip
 
    Ubuntu/Debian:
-   sudo apt install python3 python3-pip
+       sudo apt install python3 python3-pip python3-venv
 
-2. Install dependencies:
-   pip3 install -r requirements.txt
+2. Create and activate a virtual environment:
+       python3 -m venv venv
+       source venv/bin/activate
 
-3. (Optional – for GUI display)
+3. Install dependencies:
+       pip install -r requirements.txt
+
+4. (Optional – for GUI display if you run into backend errors)
 
    Fedora:
-   sudo dnf install python3-tkinter
+       sudo dnf install python3-tkinter
 
    Ubuntu/Debian:
-   sudo apt install python3-tk
+       sudo apt install python3-tk
 
-4. Run 2D plot:
-   python3 2d_plot.py
+5. Run 2D plot:
+       python 2d-plot-v2.py
 
-5. Run 3D plot:
-   python3 3d_plot.py
+6. Run 3D plot:
+       python 3d_plot_v2.py
 
 ---
 
 ### Output
 
-- The plots are displayed in a window using matplotlib
-
-
-
+- The plots are displayed in a window using matplotlib.
