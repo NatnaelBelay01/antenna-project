@@ -46,7 +46,12 @@ surf = ax.plot_surface(x, y, z, cmap='viridis',
 
 ax.set_title('Group 4 - 3D Radiation Pattern\nUniform Linear Array of 4 Isotropic Elements (d = λ/2)\nRotational symmetry about z-axis',
              fontsize=14, pad=20)
-
+# Simple text labels (visible in most views)
+ax.text(0, 0, 1.15, 'Major lobe\n(broadside)',
+        color='red', fontsize=11, ha='center')
+ax.text(1.2, 0, 0.1, 'Null (end-fire)', color='black', fontsize=10)
+ax.text(-1.2, 0, 0.1, 'Null (end-fire)', color='black', fontsize=10)
+ax.text(0.6, 0.6, 0.3, 'Side lobe', color='orange', fontsize=9)
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')

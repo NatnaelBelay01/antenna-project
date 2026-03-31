@@ -50,28 +50,81 @@ ax1.grid(True, linestyle='--', alpha=0.7)
 # Optional: label main lobe direction
 ax1.annotate('Main lobe (broadside)', xy=(np.pi/2, 1.0), xytext=(np.pi/2 + 0.3, 0.8),
              arrowprops=dict(facecolor='red', shrink=0.05), fontsize=10)
+ax1.annotate('Major lobe\n(broadside, max)',
+             xy=(np.pi/2, 1.0), xytext=(np.pi/2 + 0.4, 0.85),
+             arrowprops=dict(facecolor='red', shrink=0.05, width=1),
+             fontsize=10, ha='center', color='red', fontweight='bold')
 
+# Nulls
+ax1.annotate('Null', xy=(0, 0.02), xytext=(np.deg2rad(-25), 0.4),
+             arrowprops=dict(arrowstyle='->', color='black'), fontsize=9, color='black')
+ax1.annotate('Null', xy=(np.deg2rad(60), 0.02), xytext=(np.deg2rad(40), 0.35),
+             arrowprops=dict(arrowstyle='->', color='black'), fontsize=9, color='black')
+ax1.annotate('Null', xy=(np.deg2rad(120), 0.02), xytext=(np.deg2rad(140), 0.35),
+             arrowprops=dict(arrowstyle='->', color='black'), fontsize=9, color='black')
+ax1.annotate('Null', xy=(np.pi, 0.02), xytext=(np.deg2rad(205), 0.4),
+             arrowprops=dict(arrowstyle='->', color='black'), fontsize=9, color='black')
+
+# Side lobes
+ax1.annotate('Side lobe\n(≈ –11.3 dB)',
+             xy=(np.deg2rad(43), 0.28), xytext=(np.deg2rad(10), 0.55),
+             arrowprops=dict(arrowstyle='->', color='orange'), fontsize=9, color='orange')
+ax1.annotate('Side lobe\n(≈ –11.3 dB)',
+             xy=(np.deg2rad(137), 0.28), xytext=(np.deg2rad(170), 0.55),
+             arrowprops=dict(arrowstyle='->', color='orange'), fontsize=9, color='orange')
+
+# Beamwidth indicator (curved arrow)
+ax1.annotate('', xy=(np.deg2rad(77), 0.75), xytext=(np.deg2rad(103), 0.75),
+             arrowprops=dict(arrowstyle='<->', color='green', lw=1.5))
+ax1.text(np.deg2rad(90), 0.82, 'HPBW ≈ 26.3°',
+         fontsize=10, color='green', ha='center')
 plt.tight_layout()
 plt.savefig('Group4_2D_Polar_Linear.png', dpi=300)
 print("✅ 2D Polar Linear plot saved as 'Group4_2D_Polar_Linear.png'")
 
 # -------------------------- 2D PATTERN IN dB (RECTANGULAR) --------------------------
-F_db = 20 * np.log10(F_norm + 1e-12)   # Avoid log(0)
+F_db = 20 * np.log10(F_norm + 1e-12)
 
 fig2 = plt.figure(figsize=(10, 6))
-plt.plot(theta_deg, F_db, linewidth=2, color='red')
-plt.title('Group 4 - Normalized Radiation Pattern in dB\n(Uniform 4-element array, d = λ/2)', fontsize=14)
+plt.plot(theta_deg, F_db, linewidth=2.5, color='red')
+
+plt.title('Group 4 – Normalized Radiation Pattern in dB\n(Uniform 4-element array, d = λ/2)', fontsize=14)
 plt.xlabel('θ (degrees)')
 plt.ylabel('Magnitude (dB)')
-plt.grid(True, linestyle='--')
-plt.ylim(-40, 5)                       # Typical dB range for visibility
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.ylim(-40, 5)
 plt.xlim(0, 180)
 
-# Mark key features
-plt.axhline(-3, color='green', linestyle='--', label='-3 dB (half-power)')
-plt.axvline(60, color='purple', linestyle='--', alpha=0.7)
-plt.axvline(120, color='purple', linestyle='--', alpha=0.7)
-plt.legend()
+# ====================== LABEL ALL REQUIRED FEATURES ======================
+# Nulls
+plt.axvline(0,   color='black', linestyle='--', alpha=0.8)
+plt.axvline(60,  color='black', linestyle='--', alpha=0.8)
+plt.axvline(120, color='black', linestyle='--', alpha=0.8)
+plt.axvline(180, color='black', linestyle='--', alpha=0.8)
+plt.text(5,   -35, 'Null', fontsize=10, color='black', rotation=90)
+plt.text(55,  -35, 'Null', fontsize=10, color='black', rotation=90)
+plt.text(115, -35, 'Null', fontsize=10, color='black', rotation=90)
+plt.text(172, -35, 'Null', fontsize=10, color='black', rotation=90)
+
+# Major lobe
+plt.text(90, 2, 'Major lobe\n(broadside)', fontsize=11,
+         color='red', ha='center', fontweight='bold')
+
+# Side lobes
+plt.text(43, -13, 'Side lobe\n(–11.3 dB)',
+         fontsize=10, color='orange', ha='center')
+plt.text(137, -13, 'Side lobe\n(–11.3 dB)',
+         fontsize=10, color='orange', ha='center')
+
+# Half-power beamwidth
+plt.axhline(-3, color='green', linestyle='--', linewidth=1.5, label='–3 dB')
+plt.axvline(76.8, color='green', linestyle=':', alpha=0.7)
+plt.axvline(103.2, color='green', linestyle=':', alpha=0.7)
+plt.annotate('HPBW ≈ 26.3°', xy=(90, -4), xytext=(90, -12),
+             arrowprops=dict(arrowstyle='<->', color='green', lw=1.5),
+             fontsize=11, color='green', ha='center')
+
+plt.legend(loc='upper right')
 
 plt.tight_layout()
 plt.savefig('Group4_2D_dB.png', dpi=300)
